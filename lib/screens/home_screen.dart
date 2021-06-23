@@ -1,4 +1,5 @@
 import 'package:ebook_app/consttants.dart';
+import 'package:ebook_app/screens/details_screen.dart';
 import 'package:ebook_app/widgets/book_rating.dart';
 import 'package:ebook_app/widgets/reading_card.dart';
 import 'package:ebook_app/widgets/two_sides_rounded_button.dart';
@@ -30,13 +31,14 @@ class HomeScreen extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 24),
                 child: RichText(
                   text: TextSpan(
-                      style: Theme.of(context).textTheme.display1,
-                      children: [
-                        TextSpan(text: "What are you \nreading "),
-                        TextSpan(
-                            text: "today?",
-                            style: TextStyle(fontWeight: FontWeight.bold))
-                      ]),
+                    style: Theme.of(context).textTheme.display1,
+                    children: [
+                      TextSpan(text: "What are you \nreading "),
+                      TextSpan(
+                          text: "today?",
+                          style: TextStyle(fontWeight: FontWeight.bold))
+                    ],
+                  ),
                 ),
               ),
               SizedBox(
@@ -46,13 +48,15 @@ class HomeScreen extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
-                    ReadingListCard(
-                        "assets/images/book-1.png",
-                        "Crushing & Influence",
-                        "Gary Venchuk",
-                        4.9,
-                        () {},
-                        () {}),
+                    ReadingListCard("assets/images/book-1.png",
+                        "Crushing & Influence", "Gary Venchuk", 4.9, () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) {
+                          return DetailsScreen();
+                        }),
+                      );
+                    }, () {}),
                     ReadingListCard(
                         "assets/images/book-2.png",
                         "Top 10 business hacks",
@@ -202,18 +206,43 @@ class HomeScreen extends StatelessWidget {
                                   children: [
                                     Expanded(
                                       child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.end,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
-                                          Text("Crushing & Influence", style: TextStyle(fontWeight: FontWeight.bold ),),
-                                          SizedBox(height: 8,),
-                                          Text("Gary Venchuk", style: TextStyle(color: kLightBlackColor ),),
-                                          Align(alignment: Alignment.bottomRight,child: Text("Chapter 7 of 10",style: TextStyle(fontSize: 10, color: kLightBlackColor),),),
-                                          SizedBox(height: 10,)
+                                          Text(
+                                            "Crushing & Influence",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          SizedBox(
+                                            height: 8,
+                                          ),
+                                          Text(
+                                            "Gary Venchuk",
+                                            style: TextStyle(
+                                                color: kLightBlackColor),
+                                          ),
+                                          Align(
+                                            alignment: Alignment.bottomRight,
+                                            child: Text(
+                                              "Chapter 7 of 10",
+                                              style: TextStyle(
+                                                  fontSize: 10,
+                                                  color: kLightBlackColor),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 10,
+                                          )
                                         ],
                                       ),
                                     ),
-                                    Image.asset("assets/images/book-1.png", width: 55,)
+                                    Image.asset(
+                                      "assets/images/book-1.png",
+                                      width: 55,
+                                    )
                                   ],
                                 ),
                               ),
@@ -222,16 +251,17 @@ class HomeScreen extends StatelessWidget {
                               height: 7,
                               width: size.width * .65,
                               decoration: BoxDecoration(
-                                  color: kProgressIndicator,
-                                  borderRadius: BorderRadius.circular(7)),
-                            )
+                                color: kProgressIndicator,
+                                borderRadius: BorderRadius.circular(7),
+                              ),
+                            ),
                           ],
                         ),
                       ),
                     ),
                     SizedBox(
                       height: 40,
-                    )
+                    ),
                   ],
                 ),
               ),
